@@ -33,7 +33,7 @@ fn base_converter_case1(num1 : u64, base2 : u64) -> Vec<u64> {
     // Insert them if the program doesn't cover them already.
     if base2 < 2{
         println!("Base2 cannot be lower than 2.");
-        std::process::exit(0);
+        std::process::exit(1);
     };
 
     // Vector and unsigned int definitions.
@@ -57,8 +57,8 @@ fn base_converter_case1(num1 : u64, base2 : u64) -> Vec<u64> {
     // Makes sure the data is correct.
     for data in 0..LNV{
         if (num_vect[(data as usize)] as u64) > base1_case1 {
-            println!("The digit {} is greater than the base.", data);
-            ()
+            println!("The digit {} is greater than the base.", num_vect[(data as usize)]);
+            std::process::exit(1);
         }
     };
 
@@ -77,12 +77,12 @@ fn base_converter_case1(num1 : u64, base2 : u64) -> Vec<u64> {
         num_original /= base2;
     }
 
-    // Makes sure the data is correct 2, with base2.
-    for data in 0..num_vect.len(){
+    // Makes sure the data is correct 2, with base 2.
+    for data in 0..LNV{
         if (num_vect[(data as usize)] as u64) > base2 {
-            println!("The digit {} is greater than the base.", data);
-            ()
-        }
+            println!("The digit {} is greater than the base.", num_vect[(data as usize)]);
+            std::process::exit(1);
+        };
     };
 
     num_vect
@@ -94,10 +94,10 @@ fn base_converter_case2(num1 : u64, base1 : u64, base2 : u64) -> Vec<u64> {
     // Insert them if the program doesn't cover them already
     if base1 < 2{
         println!("Base1 cannot be lower than 2.");
-        std::process::exit(0);
+        std::process::exit(1);
     } else if base2 < 2{
         println!("Base2 cannot be lower than 2.");
-        std::process::exit(0);
+        std::process::exit(1);
     };
 
     // Vector and unsigned int definitions.
@@ -109,7 +109,7 @@ fn base_converter_case2(num1 : u64, base1 : u64, base2 : u64) -> Vec<u64> {
         //println!("{} is num_original",num_original);
         if num_original == 0{
             break;
-        }
+        };
         num_vect.insert(0,(num_original % base1).try_into().unwrap());
         num_original /= base1;
     };
@@ -117,12 +117,12 @@ fn base_converter_case2(num1 : u64, base1 : u64, base2 : u64) -> Vec<u64> {
     // Define a "constant" so it has that value stored.
     let LNV : u64 = (num_vect.len() as u64); 
                                       
-
     // Makes sure the data is correct.
     for data in 0..LNV{
-        if (num_vect[(data as usize)] as u64) > base1{
-            println!("The digit {} is greater than the base.", data)
-        }
+        if (num_vect[(data as usize)] as u64) > base1 {
+            println!("The digit {} is greater than the base.", num_vect[(data as usize)]);
+            std::process::exit(1);
+        };
     };
 
     // Obtains the real value of the num1.
@@ -141,10 +141,11 @@ fn base_converter_case2(num1 : u64, base1 : u64, base2 : u64) -> Vec<u64> {
     }
 
     // Makes sure the data is correct 2, with base2.
-    for data in 0..num_vect.len(){
+    for data in 0..LNV{
         if (num_vect[(data as usize)] as u64) > base2 {
-            println!("The digit {} is greater than the base.", data)
-        }
+            println!("The digit {} is greater than the base.", num_vect[(data as usize)]);
+            std::process::exit(1);
+        };
     };
 
     num_vect
