@@ -3,6 +3,6 @@ It is a cargo project that converts a number (in base 10), it gets transformed i
 
 ### If you want to try the program, use the next syntax for cargo:
 
-cargo run <num> <base1> <base2>
+cargo run num base1 base2
 
 num, base1 and base2 must be 64-bit unsigned integers.
